@@ -13,32 +13,17 @@ let t=time()+f
 gosub getresult
 if $s="^mTIMEOUT ERROR" print $s
 
-send "AT+ZPAS?^m"
+send "AT+BMTCELLINFO^m"
 let t=time()+f
 gosub getresult
 if $s="^mTIMEOUT ERROR" print $s
 
-send "AT+ZRSSI^m"
+send "AT+BMRAT^m"
 let t=time()+f
 gosub getresult
 if $s="^mTIMEOUT ERROR" print $s
 
-send "AT+ZRSSI?^m"
-let t=time()+f
-gosub getresult
-if $s="^mTIMEOUT ERROR" print $s
-
-send "AT+ZSINR^m"
-let t=time()+f
-gosub getresult
-if $s="^mTIMEOUT ERROR" print $s
-
-send "AT+ZSNT?^m"
-let t=time()+f
-gosub getresult
-if $s="^mTIMEOUT ERROR" print $s
-
-send "AT+ZCELLINFO?^m"
+send "AT+BMMODODR?^m"
 let t=time()+f
 gosub getresult
 if $s="^mTIMEOUT ERROR" print $s
@@ -56,3 +41,4 @@ if $mid($s,0,8)="^jCOMMAND" return
 if $mid($s,0,11)="^j+CME ERROR" return
 if time()>t return
 goto getresult
+

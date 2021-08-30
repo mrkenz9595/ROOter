@@ -170,6 +170,13 @@ while [ 1 = 1 ]; do
 			"2cb7" )
 				$ROOTER/common/fibocomdata.sh $CURRMODEM $COMMPORT
 				;;
+			"2020" )
+				if [ $PROD = 2033 ]; then
+					$ROOTER/common/boardmobidata.sh $CURRMODEM $COMMPORT
+				else
+					$ROOTER/common/otherdata.sh $CURRMODEM $COMMPORT
+				fi
+				;;
 			"05c6" )
 				case $PROD in
 					"f601" )

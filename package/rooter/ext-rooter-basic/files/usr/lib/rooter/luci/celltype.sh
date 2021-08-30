@@ -373,6 +373,27 @@ simcom_type() {
 	uci commit modem
 }
 
+boardmobi_type() {
+	ATCMDD="AT+BMMODODR?"
+	OX=$($ROOTER/gcom/gcom-locked "$COMMPORT" "run-at.gcom" "$CURRMODEM" "$ATCMDD")
+	BMMODODR=$(echo $OX | grep -o "[0-9]")
+	if [ -n "$BMMODODR" ]; then
+		case $BMMODODR in
+		"1"|"8" )
+			NETMODE="5" ;;
+		"11"|"2" )
+			NETMODE="1" ;;
+		"3" )
+			NETMODE="3" ;;
+		"5" )
+			NETMODE="7" ;;
+		esac
+		uci set modem.modem$CURRMODEM.modemtype="11"
+	fi
+	uci set modem.modem$CURRMODEM.netmode=$NETMODE
+	uci commit modem
+}
+
 CURRMODEM=$1
 COMMPORT="/dev/ttyUSB"$(uci get modem.modem$CURRMODEM.commport)
 
@@ -419,6 +440,9 @@ case $idV in
 			:
 		;;
 	esac
+	;;
+"2020" )
+	boardmobi_type
 	;;
 "1bc7" )
 	telit_type

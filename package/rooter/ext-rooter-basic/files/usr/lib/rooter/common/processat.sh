@@ -13,4 +13,5 @@ M2=$(echo "$M1" | sed -e "s!Car1 RSCP!+RSCP1x!;s!CSNR:!CSNR: !;s!RSSI (dBm):!RSS
 M3=$(echo "$M2" | sed -e "s!RSRP (dBm):!RSRP4: !;s!RSRQ (dB):!RSRQ4: !;s!LTERSRP:!LTERSRP: !;s!Model:!+MODEL: !;s!SYSCFGEX:!SYSCFGEX: !")
 M7=$(echo "$M3" | sed -e "s!RX level Carrier 0 (dBm):!RSSI3: !;s!RX level Carrier 1 (dBm):!RSSI13: !;s!SYSCFG:!SYSCFG: !;s!  ! !g")
 OX=$(echo "$M7" | sed -e "s!WCDMA channel:!UMTS:!;s!SYSINFO:!SYSINFO: !;s!+PSRAT:!+PSRAT: !;s!+MODODR:!+MODODR: !")
+OA=$(echo "$M8" | sed -e "s!WCDMA channel:!UMTS:!;s!SYSINFO:!SYSINFO: !;s!+BMRAT:!+BMRAT: !;s!+BMMODODR:!+BMMODODR: !")
 echo "$OX"

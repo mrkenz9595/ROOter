@@ -237,6 +237,20 @@ if [ $MODEMTYPE -eq 10 ]; then
 	esac
 fi
 
+# BOARDMOBI
+if [ $MODEMTYPE -eq 11 ]; then
+	case $NETMODE in
+		"3")
+			ATC="AT+BMMODODR=3" ;;
+		"5")
+			ATC="AT+BMMODODR=1" ;;
+		"7")
+			ATC="AT+BMMODODR=5" ;;
+		*)
+			ATC="AT+BMMODODR=2" ;;
+	esac
+fi
+
 ATCMDD="$ATC"
 OX=$($ROOTER/gcom/gcom-locked "$COMMPORT" "run-at.gcom" "$CURRMODEM" "$ATCMDD")
 
